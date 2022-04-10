@@ -1,0 +1,86 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    height: 100vh;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 2fr 20fr 1fr;
+}
+
+.header{
+    border: 1px black solid;
+}
+
+.main{
+    border: 1px red solid;
+    display: flex;
+}
+
+.footer{
+    border: 1px yellow solid;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* main area section */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* Player 1 Area Section */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.player1Area{
+    border: 1px black solid;
+    width: 100%;
+    display: grid;
+}
+
+.player1Board{
+    width: 450px;
+    height: 450px;
+    border: 1px black solid;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+
+.player1Board > div{
+    border: 1px black solid;
+}
+
+.player1ShipSection{
+    width: 450px;
+    height: 200px;
+    border: 1px red solid;
+    display: grid;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* Player 2 Area Section */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.player2Area{
+    border: 1px black solid;
+    width: 100%;
+    display: grid;
+}
+
+.player2Board{
+    border: 1px black solid;
+    width: 450px;
+    height: 450px;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+
+.player2Board > div{
+    border: 1px black solid;
+}
+
+.player2ShipSection{
+    width: 450px;
+    height: 200px;
+    border: 1px red solid;
+    display: grid;
+}
