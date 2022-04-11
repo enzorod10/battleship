@@ -39,16 +39,12 @@ describe('testing gameboard methods', () => {
             expect( () => practiceGame.placeShip(2, 9, 'battleship', 4, 'horizontal')).toThrowError('invalid horizontal position')
             expect( () => practiceGame.placeShip(2, 8, 'battleship', 4, 'horizontal')).toThrowError('invalid horizontal position')
             expect( () => practiceGame.placeShip(2, 7, 'battleship', 4, 'horizontal')).toThrowError('invalid horizontal position')
-            expect( () => practiceGame.placeShip(2, 6, 'battleship', 4, 'horizontal')).toThrowError('invalid horizontal position')
-            expect( () => practiceGame.placeShip(2, 5, 'battleship', 4, 'horizontal')).not.toThrowError()
 
         });
         test('don\'t allow user to position vertical ships in invalid positions', () => { 
             expect( () => practiceGame.placeShip(9, 2, 'battleship', 4, 'vertical')).toThrowError('invalid vertical position')
             expect( () => practiceGame.placeShip(8, 2, 'battleship', 4, 'vertical')).toThrowError('invalid vertical position')
             expect( () => practiceGame.placeShip(7, 2, 'battleship', 4, 'vertical')).toThrowError('invalid vertical position')
-            expect( () => practiceGame.placeShip(6, 2, 'battleship', 4, 'vertical')).toThrowError('invalid vertical position')
-            expect( () => practiceGame.placeShip(5, 2, 'battleship', 4, 'vertical')).not.toThrowError()
         });
         test('don\'t allow ships to collide on gameboard', () => { 
             practiceGame.placeShip(2, 4, 'small', 2, 'horizontal');

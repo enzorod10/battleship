@@ -1,10 +1,9 @@
 import { Ship } from './ship.js'
 
-let allShips = [];
-
 export class Gameboard{
     constructor(){
         this.board = [];
+        this.allShips = [];
         this.allShipsDestroyed;
     }
     init(){
@@ -18,29 +17,29 @@ export class Gameboard{
     placeShip(y, x, shipName, length, axis){
         if (axis === 'horizontal'){
             for (let i=0; i<length; i++){
-                if (((x + i) >= 9) || (this.board[y][x+i].hasShip === true)){
+                if (((x + i) > 9) || (this.board[y][x+i].hasShip === true)){
                     throw new Error('invalid horizontal position');             
                 }
             }
         } else {
             for (let i=0; i<length; i++){
-                if (((y + i) >= 9) || (this.board[y+i][x].hasShip === true)){
+                if (((y + i) > 9) || (this.board[y+i][x].hasShip === true)){
                     throw new Error('invalid vertical position');
                 }
             }
         }
         
-        allShips.push(new Ship(shipName, length, axis))
+        this.allShips.push(new Ship(shipName, length, axis))
 
         if (axis === 'horizontal'){
             for (let i=0; i<length; i++){
                 this.board[y][x + i].hasShip = true;
-                this.board[y][x + i].ship = allShips[allShips.length - 1];
+                this.board[y][x + i].ship = this.allShips[this.allShips.length - 1];
             }
         } else {
             for (let i=0; i<length; i++){
                 this.board[y + i][x].hasShip = true;
-                this.board[y + i][x].ship = allShips[allShips.length - 1];
+                this.board[y + i][x].ship = this.allShips[this.allShips.length - 1];
             }
         }
     }
@@ -54,11 +53,11 @@ export class Gameboard{
     }
     checkShips(){
         let count = 0;
-        for (let i=0; i < allShips.length; i++){
-            if (allShips[i].isSunk() === true){
+        for (let i=0; i < this.allShips.length; i++){
+            if (this.allShips[i].isSunk() === true){
                 count++;
             }
-            if (count === allShips.length){
+            if (count === this.allShips.length){
                 this.allShipsDestroyed = true;
             }
         }

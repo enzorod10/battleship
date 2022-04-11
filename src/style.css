@@ -33,7 +33,10 @@ body{
 .player1Area{
     border: 1px black solid;
     width: 100%;
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
 }
 
 .player1Board{
@@ -49,11 +52,14 @@ body{
     border: 1px black solid;
 }
 
-.player1ShipSection{
-    width: 450px;
-    height: 200px;
+.square.active{
+    background-color: rgb(153, 81, 81);
+}
+
+.messageContainer{
     border: 1px red solid;
-    display: grid;
+    height: 50px;
+    width: 450px;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -76,11 +82,4 @@ body{
 
 .player2Board > div{
     border: 1px black solid;
-}
-
-.player2ShipSection{
-    width: 450px;
-    height: 200px;
-    border: 1px red solid;
-    display: grid;
 }
