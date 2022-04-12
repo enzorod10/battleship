@@ -1,18 +1,17 @@
-// battleship (5), carrier (4), Crusier (3), submarine (3), destroyer (2)
-import { player1Squares } from "./boardDom"
+import { postShipDeployment } from './setupGame';
 
-export function placeShipsStage(game){
-    let player1Board = document.querySelector('.player1Board');
+export function placeShipsStage(p1Board, playerNumber){
+    let playerBoard = document.querySelectorAll('.playerBoard')[playerNumber];
     let rotateButton = document.querySelector('.rotateButton');
     let message = document.querySelector('.message')
     rotateButton.addEventListener('click', rotateShip)
-    player1Board.addEventListener('mouseout', removeActiveClass)
-    // Battleship
-    placeBattleship(player1Board, message, game);
+    playerBoard.addEventListener('mouseout', removeActiveClass)
     
+    // Battleship first, other ship next
+    placeBattleship(playerBoard, message, p1Board);
 }
 
-function placeBattleship(player1Board, message, game){
+function placeBattleship(player1Board, message, p1Board){
     document.querySelector('.message').textContent = 'Place your battleship (5)'
     let highlightBattleshipPlacement;
     let battleshipToDomTemp;
@@ -25,10 +24,10 @@ function placeBattleship(player1Board, message, game){
         }
         player1Board.removeEventListener('click', battleshipToDomTemp)
         player1Board.removeEventListener('mouseover', highlightBattleshipPlacement)
-        if (battleshipToDom(game, ev.target.location.y, ev.target.location.x, axis) === true){
-            placeCarrier(player1Board, message, game)
+        if (battleshipToDom(p1Board, ev.target.location.y, ev.target.location.x, axis) === true){
+            placeCarrier(player1Board, message, p1Board)
         } else {
-            placeBattleship(player1Board, message, game)
+            placeBattleship(player1Board, message, p1Board)
         }
 
     });
@@ -39,18 +38,18 @@ function placeBattleship(player1Board, message, game){
         }
         for(let i=0; i<10; i++){
             for(let q=0; q<10; q++){
-                if (ev.target === player1Squares.arrayOfSquares[i][q]){   
+                if (ev.target === p1Board.board[i][q].dom){   
                     if (document.querySelector('.rotateButton').classList.contains('makeHorizontal')){
                         for (let z=0; z<5;z++){
                             if (!(q + z > 9)){
-                                player1Squares.arrayOfSquares[i][q+z].classList.toggle('active')
+                                p1Board.board[i][q+z].dom.classList.toggle('active')
                             }
                         }
                     }
                     if (document.querySelector('.rotateButton').classList.contains('makeVertical')){
                         for (let z=0; z<5;z++){
                             if (!(i + z > 9)){
-                                player1Squares.arrayOfSquares[i+z][q].classList.toggle('active')
+                                p1Board.board[i+z][q].dom.classList.toggle('active')
                             }
                         }
                     } 
@@ -60,7 +59,7 @@ function placeBattleship(player1Board, message, game){
     })
 }
 
-function placeCarrier(player1Board, message, game){
+function placeCarrier(player1Board, message, p1Board){
     document.querySelector('.message').textContent = 'Place your carrier (4)'
     let carrierToDomTemp;
     let highlightCarrierPlacement;
@@ -73,10 +72,10 @@ function placeCarrier(player1Board, message, game){
         }
         player1Board.removeEventListener('click', carrierToDomTemp)
         player1Board.removeEventListener('mouseover', highlightCarrierPlacement)
-        if (carrierToDom(game, ev.target.location.y, ev.target.location.x, axis) === true){
-            placeSubmarine(player1Board, message, game)
+        if (carrierToDom(p1Board, ev.target.location.y, ev.target.location.x, axis) === true){
+            placeSubmarine(player1Board, message, p1Board)
         } else {
-            placeCarrier(player1Board, message, game)
+            placeCarrier(player1Board, message, p1Board)
         }
 
     });
@@ -87,18 +86,18 @@ function placeCarrier(player1Board, message, game){
         }
         for(let i=0; i<10; i++){
             for(let q=0; q<10; q++){
-                if (ev.target === player1Squares.arrayOfSquares[i][q]){   
+                if (ev.target === p1Board.board[i][q].dom){   
                     if (document.querySelector('.rotateButton').classList.contains('makeHorizontal')){
                         for (let z=0; z<4;z++){
                             if (!(q + z > 9)){
-                                player1Squares.arrayOfSquares[i][q+z].classList.toggle('active')
+                                p1Board.board[i][q+z].dom.classList.toggle('active')
                             }
                         }
                     }
                     if (document.querySelector('.rotateButton').classList.contains('makeVertical')){
                         for (let z=0; z<4;z++){
                             if (!(i + z > 9)){
-                                player1Squares.arrayOfSquares[i+z][q].classList.toggle('active')
+                                p1Board.board[i+z][q].dom.classList.toggle('active')
                             }
                         }
                     } 
@@ -108,7 +107,8 @@ function placeCarrier(player1Board, message, game){
     })
 }
 
-function placeSubmarine(player1Board, message, game){
+function placeSubmarine(player1Board, message, p1Board){
+    console.log(p1Board)
     document.querySelector('.message').textContent = 'Place your submarine(3)'
     let submarineToDomTemp;
     let highlightSubmarinePlacement;
@@ -121,10 +121,10 @@ function placeSubmarine(player1Board, message, game){
         }
         player1Board.removeEventListener('click', submarineToDomTemp)
         player1Board.removeEventListener('mouseover', highlightSubmarinePlacement)
-        if (submarineToDom(game, ev.target.location.y, ev.target.location.x, axis) === true){
-            placeCruiser(player1Board, message, game)
+        if (submarineToDom(p1Board, ev.target.location.y, ev.target.location.x, axis) === true){
+            placeCruiser(player1Board, message, p1Board)
         } else {
-            placeSubmarine(player1Board, message, game)
+            placeSubmarine(player1Board, message, p1Board)
         }
 
     });
@@ -135,18 +135,18 @@ function placeSubmarine(player1Board, message, game){
         }
         for(let i=0; i<10; i++){
             for(let q=0; q<10; q++){
-                if (ev.target === player1Squares.arrayOfSquares[i][q]){   
+                if (ev.target === p1Board.board[i][q].dom){   
                     if (document.querySelector('.rotateButton').classList.contains('makeHorizontal')){
                         for (let z=0; z<3;z++){
                             if (!(q + z > 9)){
-                                player1Squares.arrayOfSquares[i][q+z].classList.toggle('active')
+                                p1Board.board[i][q+z].dom.classList.toggle('active')
                             }
                         }
                     }
                     if (document.querySelector('.rotateButton').classList.contains('makeVertical')){
                         for (let z=0; z<3;z++){
                             if (!(i + z > 9)){
-                                player1Squares.arrayOfSquares[i+z][q].classList.toggle('active')
+                                p1Board.board[i+z][q].dom.classList.toggle('active')
                             }
                         }
                     } 
@@ -156,7 +156,7 @@ function placeSubmarine(player1Board, message, game){
     })
 }
 
-function placeCruiser(player1Board, message, game){
+function placeCruiser(player1Board, message, p1Board){
     document.querySelector('.message').textContent = 'Place your cruiser (2)'
     let cruiserToDomTemp;
     let highlightCruiserPlacement;
@@ -169,10 +169,10 @@ function placeCruiser(player1Board, message, game){
         }
         player1Board.removeEventListener('click', cruiserToDomTemp)
         player1Board.removeEventListener('mouseover', highlightCruiserPlacement)
-        if (cruiserToDom(game, ev.target.location.y, ev.target.location.x, axis) === true){
-            placeSmallship(player1Board, message, game)
+        if (cruiserToDom(p1Board, ev.target.location.y, ev.target.location.x, axis) === true){
+            placeSmallship(player1Board, message, p1Board)
         } else {
-            placeCruiser(player1Board, message, game)
+            placeCruiser(player1Board, message, p1Board)
         }
 
     });
@@ -183,18 +183,18 @@ function placeCruiser(player1Board, message, game){
         }
         for(let i=0; i<10; i++){
             for(let q=0; q<10; q++){
-                if (ev.target === player1Squares.arrayOfSquares[i][q]){   
+                if (ev.target === p1Board.board[i][q].dom){   
                     if (document.querySelector('.rotateButton').classList.contains('makeHorizontal')){
                         for (let z=0; z<2;z++){
                             if (!(q + z > 9)){
-                                player1Squares.arrayOfSquares[i][q+z].classList.toggle('active')
+                                p1Board.board[i][q+z].dom.classList.toggle('active')
                             }
                         }
                     }
                     if (document.querySelector('.rotateButton').classList.contains('makeVertical')){
                         for (let z=0; z<2;z++){
                             if (!(i + z > 9)){
-                                player1Squares.arrayOfSquares[i+z][q].classList.toggle('active')
+                                p1Board.board[i+z][q].dom.classList.toggle('active')
                             }
                         }
                     } 
@@ -204,7 +204,7 @@ function placeCruiser(player1Board, message, game){
     })
 }
 
-function placeSmallship(player1Board, message, game){
+function placeSmallship(player1Board, message, p1Board){
     document.querySelector('.message').textContent = 'Place your smallship (1)'
     let smallshipToDomTemp;
     let highlightSmallshipPlacement;
@@ -217,10 +217,16 @@ function placeSmallship(player1Board, message, game){
         }
         player1Board.removeEventListener('click', smallshipToDomTemp)
         player1Board.removeEventListener('mouseover', highlightSmallshipPlacement)
-        if (smallshipToDom(game, ev.target.location.y, ev.target.location.x, axis) === true){
-            //placeCruiser(player1Board, message, game)
+        if (smallshipToDom(p1Board, ev.target.location.y, ev.target.location.x, axis) === true){
+            document.querySelector('.message').textContent = 'All ships placed.. ready to deploy!'
+            let deployButton = document.createElement('div')
+            deployButton.textContent = 'DEPLOY';
+            document.querySelector('.playerArea').appendChild(deployButton);
+            deployButton.addEventListener('click', () => {
+                postShipDeployment('singlePlayer')
+            })
         } else {
-            placeSmallship(player1Board, message, game)
+            placeSmallship(player1Board, message, p1Board)
         }
 
     });
@@ -231,18 +237,18 @@ function placeSmallship(player1Board, message, game){
         }
         for(let i=0; i<10; i++){
             for(let q=0; q<10; q++){
-                if (ev.target === player1Squares.arrayOfSquares[i][q]){   
+                if (ev.target === p1Board.board[i][q].dom){   
                     if (document.querySelector('.rotateButton').classList.contains('makeHorizontal')){
                         for (let z=0; z<1;z++){
                             if (!(q + z > 9)){
-                                player1Squares.arrayOfSquares[i][q+z].classList.toggle('active')
+                                p1Board.board[i][q+z].dom.classList.toggle('active')
                             }
                         }
                     }
                     if (document.querySelector('.rotateButton').classList.contains('makeVertical')){
                         for (let z=0; z<1;z++){
                             if (!(i + z > 9)){
-                                player1Squares.arrayOfSquares[i+z][q].classList.toggle('active')
+                                p1Board.board[i+z][q].dom.classList.toggle('active')
                             }
                         }
                     } 

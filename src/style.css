@@ -30,7 +30,7 @@ body{
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* Player 1 Area Section */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-.player1Area{
+.playerArea{
     border: 1px black solid;
     width: 100%;
     display: flex;
@@ -39,7 +39,7 @@ body{
     gap: 40px;
 }
 
-.player1Board{
+.playerBoard{
     width: 450px;
     height: 450px;
     border: 1px black solid;
@@ -48,7 +48,7 @@ body{
     grid-template-rows: repeat(10, 1fr);
 }
 
-.player1Board > div{
+.playerBoard > div{
     border: 1px black solid;
 }
 
