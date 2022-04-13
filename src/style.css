@@ -1,13 +1,20 @@
 *{
     padding: 0px;
     margin: 0px;
+    user-select: none;
+}
+P{
+    margin: 0px;
+    padding: 0px;
 }
 
 body{
+    background: linear-gradient(217deg, rgba(0, 0, 0, 0.582), rgba(173, 0, 0, 0) 70.71%),
+            linear-gradient(127deg, rgba(15, 8, 8, 0.8), rgba(28, 240, 28, 0) 70.71%),
+            linear-gradient(336deg, rgba(30, 39, 21, 0.301), rgba(0,0,255,0) 70.71%);
     height: 100vh;
     box-sizing: border-box;
     display: grid;
-    grid-template-rows: 2fr 20fr 1fr;
 }
 
 .header{
@@ -27,12 +34,98 @@ body{
 /* main area section */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+.startingMenu,
+.gamePhase{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.battleshipLogo{
+    max-height: 10%;
+}
+
+.battleshipImage{
+    max-height: 20%;
+    margin-top: -20px;
+}
+
+.optionsContainer{
+    display: flex;
+    gap: 15px;
+    max-height: 20%;
+}
+
+.playAgainstPlayer,
+.playAgainstBot,
+.easyDifficulty,
+.hardDifficulty,
+.playMultiplayerButton{
+    border: 1px black solid;
+    padding: 8px 15px 8px 15px;
+    cursor: pointer;
+    border-radius: 2px;
+    font-weight: 600;
+}
+
+.playAgainstPlayer:hover,
+.playAgainstBot:hover,
+.easyDifficulty:hover,
+.hardDifficulty:hover,
+.playMultiplayerButton:hover{
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+.player1NameContainer,
+.player2NameContainer{
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    gap: 8px;
+    position: relative;
+}
+
+.player1NameContainer > div:nth-child(1),
+.player2NameContainer > div:nth-child(1){
+    text-align: center;
+}
+
+.player1NameContainer > input:nth-child(2),
+.player2NameContainer > input:nth-child(2){
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px black solid;  
+    background-color: transparent;
+    width: 150px;
+    text-align: center;
+}
+
+.player1NameContainer > input:nth-child(2):focus,
+.player2NameContainer > input:nth-child(2):focus{
+    outline: none;
+}
+
+.playMultiplayerButton{
+    margin-top: 15px;
+}
+
+.errorMessage{
+    color: red;
+    font-weight: 500;
+    position: absolute;
+    bottom: -15px;
+    font-size: 11px;
+}
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* Player Area Section */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .playerArea{
     border: 1px black solid;
-    width: 100%;
+    width: 380px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,8 +133,8 @@ body{
 }
 
 .playerBoard{
-    width: 450px;
-    height: 450px;
+    width: 380px;
+    height: 380px;
     border: 1px black solid;
     position: relative;
     display: grid;
@@ -61,7 +154,7 @@ body{
 .messageContainer{
     border: 1px red solid;
     height: 50px;
-    width: 450px;
+    width: 380px;
 }
 
 .fakeBoard{

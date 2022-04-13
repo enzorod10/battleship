@@ -23,52 +23,52 @@ export function displayPlayerShipsOnBoard(playerBoard){
         if (playerBoard.allShips[i].name === 'Battleship'){
             if (playerBoard.allShips[i].axis === 'horizontal'){
                 arrayOfPhysicalShips[i].src = horizontalBattleship
-                arrayOfPhysicalShips[i].style.height = '45px'
-                arrayOfPhysicalShips[i].style.width = '225px'
+                arrayOfPhysicalShips[i].style.height = '38px'
+                arrayOfPhysicalShips[i].style.width = '190px'
             } else {
                 arrayOfPhysicalShips[i].src = verticalBattleship
-                arrayOfPhysicalShips[i].style.height = '225px'
-                arrayOfPhysicalShips[i].style.width = '45px'
+                arrayOfPhysicalShips[i].style.height = '190px'
+                arrayOfPhysicalShips[i].style.width = '38px'
             }
         }else if (playerBoard.allShips[i].name === 'Carrier'){
             if (playerBoard.allShips[i].axis === 'horizontal'){
                 arrayOfPhysicalShips[i].src = horizontalCarrier
-                arrayOfPhysicalShips[i].style.height = '45px'
-                arrayOfPhysicalShips[i].style.width = '180px'
+                arrayOfPhysicalShips[i].style.height = '38px'
+                arrayOfPhysicalShips[i].style.width = '152px'
             } else {
                 arrayOfPhysicalShips[i].src = verticalCarrier
-                arrayOfPhysicalShips[i].style.height = '180px'
-                arrayOfPhysicalShips[i].style.width = '45px'
+                arrayOfPhysicalShips[i].style.height = '152px'
+                arrayOfPhysicalShips[i].style.width = '38px'
             }
         } else if (playerBoard.allShips[i].name === 'Submarine'){
             if (playerBoard.allShips[i].axis === 'horizontal'){
                 arrayOfPhysicalShips[i].src = horizontalSubmarine
-                arrayOfPhysicalShips[i].style.height = '45px'
-                arrayOfPhysicalShips[i].style.width = '135px'
+                arrayOfPhysicalShips[i].style.height = '38px'
+                arrayOfPhysicalShips[i].style.width = '114px'
             } else {
                 arrayOfPhysicalShips[i].src = verticalSubmarine
-                arrayOfPhysicalShips[i].style.height = '135px'
-                arrayOfPhysicalShips[i].style.width = '45px'
+                arrayOfPhysicalShips[i].style.height = '114px'
+                arrayOfPhysicalShips[i].style.width = '38px'
             }
         } else if (playerBoard.allShips[i].name === 'Cruiser'){
             if (playerBoard.allShips[i].axis === 'horizontal'){
                 arrayOfPhysicalShips[i].src = horizontalCruiser
-                arrayOfPhysicalShips[i].style.height = '45px'
-                arrayOfPhysicalShips[i].style.width = '90px'
+                arrayOfPhysicalShips[i].style.height = '38px'
+                arrayOfPhysicalShips[i].style.width = '76px'
             } else {
                 arrayOfPhysicalShips[i].src = verticalCruiser
-                arrayOfPhysicalShips[i].style.height = '90px'
-                arrayOfPhysicalShips[i].style.width = '45px'
+                arrayOfPhysicalShips[i].style.height = '76px'
+                arrayOfPhysicalShips[i].style.width = '38px'
             }
         }  else if (playerBoard.allShips[i].name === 'Smallship'){
             if (playerBoard.allShips[i].axis === 'horizontal'){
                 arrayOfPhysicalShips[i].src = horizontalSmallship
-                arrayOfPhysicalShips[i].style.height = '45px'
-                arrayOfPhysicalShips[i].style.width = '45px'
+                arrayOfPhysicalShips[i].style.height = '38px'
+                arrayOfPhysicalShips[i].style.width = '38px'
             } else {
                 arrayOfPhysicalShips[i].src = verticalSmallship
-                arrayOfPhysicalShips[i].style.height = '45px'
-                arrayOfPhysicalShips[i].style.width = '45px'
+                arrayOfPhysicalShips[i].style.height = '38px'
+                arrayOfPhysicalShips[i].style.width = '38px'
             }
         } 
         arrayOfPhysicalShips[i].style.position = 'absolute';

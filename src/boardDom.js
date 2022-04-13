@@ -1,9 +1,18 @@
-export function createPlayerAreas(){
-    const mainArea = document.querySelector('.main');
-    mainArea.textContent = '';
-    // Player1 Area
+import battleshipGameTitle from './assets/battleshipLogo.png'
+
+export function createPlayerAreas(playerNumber){
+    if (playerNumber === 0){
+        const gamePhase = document.createElement('div');
+        gamePhase.classList.add('gamePhase');
+        document.body.appendChild(gamePhase);
+        let battleshipLogo = document.createElement('img');
+        battleshipLogo.classList.add('battleshipLogo')
+        battleshipLogo.src = battleshipGameTitle;
+        gamePhase.appendChild(battleshipLogo) 
+    }
+    // Player Area
     const playerArea = document.createElement('div');
-    mainArea.appendChild(playerArea);
+    document.querySelector('.gamePhase').appendChild(playerArea);
     playerArea.classList.add('playerArea');
     const messageContainer = document.createElement('div');
     playerArea.appendChild(messageContainer);
