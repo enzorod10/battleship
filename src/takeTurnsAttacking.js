@@ -13,7 +13,11 @@ function processPlayer2Target(ev){
     for (let i=0; i<10; i++){
         for (let q=0; q<10; q++){
             if (players[1].playerBoard.board[i][q].dom === ev.target){
-                players[0].player.attack(i, q, players[1].playerBoard)
+                try{
+                    players[0].player.attack(i, q, players[1].playerBoard)
+                } catch{
+                    attackPlayer2();
+                }
                 document.querySelectorAll('.playerBoard')[1].removeEventListener('click', processPlayer2Target)
                 if(players[1].playerBoard.allShipsDestroyed === true){
                     players[0].player.winner = true;
@@ -27,8 +31,11 @@ function processPlayer2Target(ev){
 }
 
 function attackPlayer1(){
-    players[1].player.attack(0, 0, players[0].playerBoard);
-
+    try{
+        players[1].player.attack(0, 0, players[0].playerBoard);
+    } catch{
+        attackPlayer1();
+    }
     if (players[0].playerBoard.allShipsDestroyed === true){
         players[1].player.winner = true;
         reportResult(players);

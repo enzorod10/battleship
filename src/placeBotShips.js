@@ -1,12 +1,16 @@
 let axis;
-
 let randomAxis;
 
 export function placeBotShips(botBoard){
    placeBotBattleship(botBoard);
    placeBotCarrier(botBoard);
    placeBotSubmarine(botBoard);
+   placeBotSubmarine(botBoard);
    placeBotCruiser(botBoard);
+   placeBotCruiser(botBoard);
+   placeBotCruiser(botBoard);
+   placeBotSmallship(botBoard);
+   placeBotSmallship(botBoard);
    placeBotSmallship(botBoard);
 }
 

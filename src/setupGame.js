@@ -4,6 +4,7 @@ import { placeShipsStage } from './placeShipsStage.js';
 import { placeBotShips } from './placeBotShips.js'
 import { displayBoards } from './displayBoards.js'
 import { takeTurnsAttacking } from './takeTurnsAttacking.js'
+import { displayPlayerShipsOnBoard } from './displayShipsOnBoard';
 import { Gameboard } from './gameboard.js';
 import { Player } from './player.js';
 
@@ -27,13 +28,14 @@ function setupGame(){
     createPlayerAreas(0);
     createPlayerBoard(players[0].playerBoard.board, 0);
     placeShipsStage(players[0].playerBoard, 0);
-
+    displayPlayerShipsOnBoard(players[0].playerBoard)
 }
 
 export function postShipDeployment(mode){
     if (mode === 'singlePlayer'){
         createBotBoard();
         displayBoards(players);
+        displayPlayerShipsOnBoard(players[0].playerBoard)
         takeTurnsAttacking()
     }
 }

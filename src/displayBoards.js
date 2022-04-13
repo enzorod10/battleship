@@ -32,9 +32,11 @@ export function displayBoards(players){
             player2Board.appendChild(players[1].playerBoard.board[i][q].dom);
             if (players[0].playerBoard.board[i][q].hasShip === true){
                 players[0].playerBoard.board[i][q].dom.classList.add('active')
+                players[0].playerBoard.board[i][q].dom.classList.add(`${players[0].playerBoard.board[i][q].ship.axis}` + `${players[0].playerBoard.board[i][q].ship.name}`)
             }
             if (players[1].playerBoard.board[i][q].hasShip === true){
                 players[1].playerBoard.board[i][q].dom.classList.add('active')
+                players[1].playerBoard.board[i][q].dom.classList.add(`${players[1].playerBoard.board[i][q].ship.axis}` + `${players[1].playerBoard.board[i][q].ship.name}`)
             }
         }
     }

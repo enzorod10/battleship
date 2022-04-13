@@ -28,7 +28,7 @@ body{
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* Player 1 Area Section */
+/* Player Area Section */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .playerArea{
     border: 1px black solid;
@@ -43,7 +43,9 @@ body{
     width: 450px;
     height: 450px;
     border: 1px black solid;
+    position: relative;
     display: grid;
+    z-index: 2;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
 }
@@ -62,24 +64,11 @@ body{
     width: 450px;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* Player 2 Area Section */
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-.player2Area{
-    border: 1px black solid;
+.fakeBoard{
+    height: 100%;
+    position: absolute;
     width: 100%;
-    display: grid;
+    z-index: 1;
+    pointer-events: none;
 }
 
-.player2Board{
-    border: 1px black solid;
-    width: 450px;
-    height: 450px;
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(10, 1fr);
-}
-
-.player2Board > div{
-    border: 1px black solid;
-}

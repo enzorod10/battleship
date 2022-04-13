@@ -30,7 +30,8 @@ export class Gameboard{
         }
         
         this.allShips.push(new Ship(shipName, length, axis))
-
+        this.allShips[this.allShips.length-1].placedAt = { y: y, x:x }
+        
         if (axis === 'horizontal'){
             for (let i=0; i<length; i++){
                 this.board[y][x + i].hasShip = true;
@@ -44,12 +45,17 @@ export class Gameboard{
         }
     }
     receiveAttack(y, x){
-        this.board[y][x].isShot = true;
-        if (this.board[y][x].hasShip){
-            this.board[y][x].ship.hit();
-            this.board[y][x].ship.isSunk();
-            this.checkShips();
+        if (this.board[y][x].isShot === true){
+            throw new Error('invalid attacking location')
+        } else {
+            this.board[y][x].isShot = true;
+            if (this.board[y][x].hasShip){
+                this.board[y][x].ship.hit();
+                this.board[y][x].ship.isSunk();
+                this.checkShips();
+            }
         }
+        
     }
     checkShips(){
         let count = 0;
