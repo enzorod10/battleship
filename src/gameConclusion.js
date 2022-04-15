@@ -1,7 +1,7 @@
 export function reportResult(players){
     if (players[0].player.winner === true){
-        console.log('player 1 wins!')
+        document.querySelector('.message').textContent = players[0].player.name + 'has won the game!'
     } else {
-        console.log('player 1 wins!')
+        document.querySelector('.message').textContent = players[1].player.name + 'has won the game!'
     }
 }

@@ -14,15 +14,11 @@ export function createPlayerAreas(playerNumber){
     const playerArea = document.createElement('div');
     document.querySelector('.gamePhase').appendChild(playerArea);
     playerArea.classList.add('playerArea');
-    const messageContainer = document.createElement('div');
-    playerArea.appendChild(messageContainer);
-    messageContainer.classList.add('messageContainer');
     const message = document.createElement('div');
-    messageContainer.appendChild(message);
+    playerArea.appendChild(message);
     message.classList.add('message');
-    const rotateButton = document.createElement('button');
+    const rotateButton = document.createElement('div');
     playerArea.appendChild(rotateButton);
-    rotateButton.textContent = 'rotate';
     rotateButton.classList.add('rotateButton', 'makeVertical', 'makeHorizontal')
     rotateButton.classList.toggle('makeVertical')
     const playerBoard = document.createElement('div');
@@ -30,8 +26,8 @@ export function createPlayerAreas(playerNumber){
     playerArea.appendChild(playerBoard);
 }
 
-export function createPlayerBoard(board, playerNumber){
-    let playerBoard = document.querySelectorAll('.playerBoard')[playerNumber];
+export function createPlayerBoard(board){
+    let playerBoard = document.querySelector('.playerBoard');
     for (let i=0; i<10; i++){
         for (let q=0; q<10; q++){
             board[i][q].dom = document.createElement('div');

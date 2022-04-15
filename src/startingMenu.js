@@ -1,7 +1,7 @@
 import './style.css';
 import battleshipGameTitle from './assets/battleshipLogo.png'
 import battleshipPNG from './assets/battleshipImage.png'
-import { setupPlayer1 } from './setupGame.js'
+import { setupPlayer } from './setupGame.js'
 
 let errors = [];
 
@@ -52,13 +52,13 @@ function selectDifficulty(){
     easyDifficulty.addEventListener('click', setUpGameTemp = () =>{
         easyDifficulty.removeEventListener('click', setUpGameTemp)
         document.querySelector('body').textContent = '';
-        setupPlayer1('singlePlayer', 'novice')
+        setupPlayer('singlePlayer', 'novice', 0)
     })
 
     hardDifficulty.addEventListener('click', setUpGameTemp = () =>{
         hardDifficulty.removeEventListener('click', setUpGameTemp)
         document.querySelector('body').textContent = '';
-        setupPlayer1('singlePlayer', 'expert')
+        setupPlayer('singlePlayer', 'expert', 0)
     })
 }
 
@@ -122,5 +122,7 @@ function playMultiplayer(){
         } else {
             document.querySelector('.playMultiplayerButton').removeEventListener('click', playMultiplayer)
 
+        setupPlayer('multiPlayer', 'multi', 0, document.querySelector('.inputPlayer1Name').value, document.querySelector('.inputPlayer2Name').value)
+            
         }
 }

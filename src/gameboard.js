@@ -5,6 +5,8 @@ export class Gameboard{
         this.board = [];
         this.allShips = [];
         this.allShipsDestroyed;
+        this.chronologicalGeneralDamage = [];
+        this.chronologicalShipDamage = [];
     }
     init(){
         for (let y=0; y<10; y++){
@@ -48,8 +50,10 @@ export class Gameboard{
         if (this.board[y][x].isShot === true){
             throw new Error('invalid attacking location')
         } else {
+            this.chronologicalGeneralDamage.push({y: y, x:x});
             this.board[y][x].isShot = true;
             if (this.board[y][x].hasShip){
+                this.chronologicalShipDamage.push({y: y, x:x});
                 this.board[y][x].ship.hit();
                 this.board[y][x].ship.isSunk();
                 this.checkShips();

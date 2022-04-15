@@ -1,42 +1,34 @@
-export function displayBoards(players){
-    const mainArea = document.querySelector('.main')
-    mainArea.textContent = '';
-    let player1Area = document.createElement('div')
-    player1Area.classList.add('playerArea')
-    let player2Area = document.createElement('div')
-    player2Area.classList.add('playerArea')
-    mainArea.appendChild(player1Area);
-    mainArea.appendChild(player2Area);
+export function displayBoards(player, num){
+    const gamePhase = document.querySelector('.gamePhase');
+    gamePhase.style.justifyContent = 'space-around'
 
-    let message = [];
-    message[0] = document.createElement('div');
-    message[1] = document.createElement('div');
-    message[0].classList.add('message')
-    message[1].classList.add('message')
-    player1Area.appendChild(message[0]);
-    player2Area.appendChild(message[1]);
+    let playerArea = document.createElement('div')
+    playerArea.classList.add('playerArea')
+    gamePhase.appendChild(playerArea);
 
-    let player1Board = document.createElement('div');
-    let player2Board = document.createElement('div');
-    player1Board.classList.add('playerBoard')
-    player2Board.classList.add('playerBoard')
-    player1Area.appendChild(player1Board);
-    player2Area.appendChild(player2Board);
-    
+    if (num === 0){
+        let message = document.querySelector('.message');
+        let player1Instructions = document.createElement('div');
+        message.appendChild(player1Instructions)
+        let player2Instructions = document.createElement('div');
+        message.appendChild(player2Instructions)
+        message.textContent = '';
+        message.classList.add('message')
+        gamePhase.appendChild(message)
+        document.querySelector('.playerArea').remove();
+        document.querySelector('.battleshipLogo').remove();
+    }
+
+    let playerBoard = document.createElement('div');
+    playerBoard.classList.add('playerBoard')
+    playerArea.appendChild(playerBoard);
     
     for (let i=0; i<10; i++){
         for (let q=0; q<10; q++){
-            players[1].playerBoard.board[i][q].dom = document.createElement('div')
-            players[1].playerBoard.board[i][q].dom.classList.add('square')
-            player1Board.appendChild(players[0].playerBoard.board[i][q].dom);
-            player2Board.appendChild(players[1].playerBoard.board[i][q].dom);
-            if (players[0].playerBoard.board[i][q].hasShip === true){
-                players[0].playerBoard.board[i][q].dom.classList.add('active')
-                players[0].playerBoard.board[i][q].dom.classList.add(`${players[0].playerBoard.board[i][q].ship.axis}` + `${players[0].playerBoard.board[i][q].ship.name}`)
-            }
-            if (players[1].playerBoard.board[i][q].hasShip === true){
-                players[1].playerBoard.board[i][q].dom.classList.add('active')
-                players[1].playerBoard.board[i][q].dom.classList.add(`${players[1].playerBoard.board[i][q].ship.axis}` + `${players[1].playerBoard.board[i][q].ship.name}`)
+            playerBoard.appendChild(player.playerBoard.board[i][q].dom);
+            if (player.playerBoard.board[i][q].hasShip === true){
+                player.playerBoard.board[i][q].dom.classList.add('active')
+                player.playerBoard.board[i][q].dom.classList.add(`${player.playerBoard.board[i][q].ship.axis}` + `${player.playerBoard.board[i][q].ship.name}`)
             }
         }
     }

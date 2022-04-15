@@ -83,3 +83,11 @@ function placeBotSmallship(botBoard){
         placeBotCruiser(botBoard)
     }
 }
+
+export function populateBotBoard(botBoard){
+    for (let i=0; i<10; i++){
+        for (let q=0; q<10; q++){
+            botBoard.board[i][q].dom = document.createElement('div');
+        }
+    }
+}

@@ -1,9 +1,9 @@
-import { postShipDeployment } from './setupGame';
+import { postShipDeployment, multiplayerAttackingStage } from './setupGame';
 import { displayPlayerShipsOnBoard } from './displayShipsOnBoard'
 
 let highlightShipPlacementTemp;
 let shipToDomTemp;
-let count = 0;
+let count;
 let shipsInfo = [];
 
 function Ship(shipName, shipLength){
@@ -24,43 +24,45 @@ function supplyShipsInfo(){
     shipsInfo[9] = new Ship('Smallship', 1)
 }
 
-export function placeShipsStage(p1Board, playerNumber){
+export function placeShipsStage(pBoard, playerNumber){
+    count = 0;
     supplyShipsInfo();
-    let playerBoardDom = document.querySelectorAll('.playerBoard')[playerNumber];
+    let playerBoardDom = document.querySelector('.playerBoard');
     let rotateButton = document.querySelector('.rotateButton');
     rotateButton.addEventListener('click', rotateShip)
     playerBoardDom.addEventListener('mouseout', removeActiveClass)
     
     // Battleship first, other ships next
-    placeShip(p1Board);
+    placeShip(pBoard, playerNumber);
 }
 
-function placeShip(p1Board){
+function placeShip(pBoard, playerNumber){
     document.querySelector('.message').textContent = shipsInfo[count].message;
     let playerBoard = document.querySelector('.playerBoard')
-    playerBoard.addEventListener('mouseover', highlightShipPlacementTemp = (ev) => highlightShipPlacement(ev, p1Board))
-    playerBoard.addEventListener('click', shipToDomTemp = (ev) => shipToDom(ev, p1Board))
+    playerBoard.addEventListener('mouseover', highlightShipPlacementTemp = (ev) => highlightShipPlacement(ev, pBoard))
+    playerBoard.addEventListener('click', shipToDomTemp = (ev) => shipToDom(ev, pBoard, playerNumber))
+
 }
 
-function highlightShipPlacement(ev, p1Board){
+function highlightShipPlacement(ev, pBoard){
     let activeArray = Array.from(document.querySelectorAll('.active'))
         for (let i=0; i<activeArray.length; i++){
             activeArray[i].classList.remove('active');    
         }
         for(let i=0; i<10; i++){
             for(let q=0; q<10; q++){
-                if (ev.target === p1Board.board[i][q].dom){   
+                if (ev.target === pBoard.board[i][q].dom){   
                     if (document.querySelector('.rotateButton').classList.contains('makeHorizontal')){
                         for (let z=0; z<shipsInfo[count].length;z++){
                             if (!(q + z > 9)){
-                                p1Board.board[i][q+z].dom.classList.toggle('active')
+                                pBoard.board[i][q+z].dom.classList.toggle('active')
                             }
                         }
                     }
                     if (document.querySelector('.rotateButton').classList.contains('makeVertical')){
                         for (let z=0; z<shipsInfo[count].length;z++){
                             if (!(i + z > 9)){
-                                p1Board.board[i+z][q].dom.classList.toggle('active')
+                                pBoard.board[i+z][q].dom.classList.toggle('active')
                             }
                         }
                     } 
@@ -69,31 +71,39 @@ function highlightShipPlacement(ev, p1Board){
         }
 }
 
-function shipToDom(ev, p1Board){
+function shipToDom(ev, pBoard, playerNumber){
     let playerBoard = document.querySelector('.playerBoard')
     let axis;
     playerBoard.removeEventListener('click', shipToDomTemp)
     playerBoard.removeEventListener('mouseover', highlightShipPlacementTemp)
     if (!(ev.target.classList.contains('square'))){
-        placeShip(p1Board);
+        placeShip(pBoard, playerNumber);
     }else {
-        
         if (document.querySelector('.rotateButton').classList.contains('makeHorizontal')){
             axis = 'horizontal';
         } else { 
             axis = 'vertical'
         }
         
-        if (checkShipValidity(p1Board, ev.target.location.y, ev.target.location.x, axis, shipsInfo[count].name, shipsInfo[count].length) === true){
-            displayPlayerShipsOnBoard(p1Board)
+        if (checkShipValidity(pBoard, ev.target.location.y, ev.target.location.x, axis, shipsInfo[count].name, shipsInfo[count].length) === true){
+            displayPlayerShipsOnBoard(pBoard)
             count++
             if (count === shipsInfo.length){
-                postShipDeployment('singlePlayer')
+                if (playerNumber === 0){
+                    createDeployButton();
+                    document.querySelector('.message').textContent = 'All ships have been placed. You may now deploy.'
+                    document.querySelector('.deployButton').addEventListener('click', postShipDeployment)
+                } else if (playerNumber === 1){
+                    createDeployButton();
+                    document.querySelector('.message').textContent = 'All ships have been placed. You may now deploy.'
+                    document.querySelector('.deployButton').addEventListener('click', multiplayerAttackingStage)
+                }
+                
             } else {
-                placeShip(p1Board)
+                placeShip(pBoard, playerNumber)
             }
         } else {
-            placeShip(p1Board)
+            placeShip(pBoard, playerNumber)
         }
     }
     
@@ -113,9 +123,17 @@ function rotateShip(){
     document.querySelector('.rotateButton').classList.toggle('makeHorizontal');
 }
 
-function removeActiveClass(){
+export function removeActiveClass(){
     let activeArray = Array.from(document.querySelectorAll('.active'))
     for (let i=0; i<activeArray.length; i++){
         activeArray[i].classList.remove('active');    
     }
+}
+
+
+function createDeployButton(){
+    let deployButton = document.createElement('div');
+    deployButton.classList.add('deployButton');
+    document.querySelector('.gamePhase').appendChild(deployButton);
+    deployButton.textContent = 'DEPLOY';
 }
