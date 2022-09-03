@@ -34,8 +34,6 @@ function processPlayer2Target(ev){
                     caught = true;
                     document.querySelector('.message').textContent = 'Invalid shot. Pick another location.'
                     setTimeout(attackPlayer2, 2000);
-                    
-
                 }
                 if (!caught){
                     if (players[0].playerBoard.mode === 'singlePlayer'){
@@ -115,7 +113,6 @@ function processPlayer1Target(ev){
         }
     }
 }
-
 
 function communicateAttackInfo(offense, defense, y, x){
     if (defense.playerBoard.board[y][x].hasShip === true){

@@ -11,6 +11,7 @@ function Ship(shipName, shipLength){
     this.length = shipLength,
     this.message = 'Place your ' + this.name.substring(0, this.name.length) + ` (${this.length})`
 }
+
 function supplyShipsInfo(){
     shipsInfo[0] = new Ship('Battleship', 5)
     shipsInfo[1] = new Ship('Carrier', 4)
@@ -41,9 +42,9 @@ function placeShip(pBoard, playerNumber){
     let playerBoard = document.querySelector('.playerBoard')
     playerBoard.addEventListener('mouseover', highlightShipPlacementTemp = (ev) => highlightShipPlacement(ev, pBoard))
     playerBoard.addEventListener('click', shipToDomTemp = (ev) => shipToDom(ev, pBoard, playerNumber))
-
 }
 
+// Highlights the board to see where the ship will be placed on the board
 function highlightShipPlacement(ev, pBoard){
     let activeArray = Array.from(document.querySelectorAll('.active'))
         for (let i=0; i<activeArray.length; i++){
@@ -84,9 +85,9 @@ function shipToDom(ev, pBoard, playerNumber){
         } else { 
             axis = 'vertical'
         }
-        
+        // If the position to place the ship is valid, then continue with the next ship.
         if (checkShipValidity(pBoard, ev.target.location.y, ev.target.location.x, axis, shipsInfo[count].name, shipsInfo[count].length) === true){
-            displayPlayerShipsOnBoard(pBoard)
+            displayPlayerShipsOnBoard(pBoard, count)
             count++
             if (count === shipsInfo.length){
                 if (playerNumber === 0){
@@ -98,7 +99,6 @@ function shipToDom(ev, pBoard, playerNumber){
                     document.querySelector('.message').textContent = 'All ships have been placed. You may now deploy.'
                     document.querySelector('.deployButton').addEventListener('click', multiplayerAttackingStage)
                 }
-                
             } else {
                 placeShip(pBoard, playerNumber)
             }
@@ -106,7 +106,6 @@ function shipToDom(ev, pBoard, playerNumber){
             placeShip(pBoard, playerNumber)
         }
     }
-    
 }
 
 function checkShipValidity(game, y, x, axis, name, length){
@@ -129,7 +128,6 @@ export function removeActiveClass(){
         activeArray[i].classList.remove('active');    
     }
 }
-
 
 function createDeployButton(){
     let deployButton = document.createElement('div');

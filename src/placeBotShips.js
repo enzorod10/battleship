@@ -88,6 +88,23 @@ export function populateBotBoard(botBoard){
     for (let i=0; i<10; i++){
         for (let q=0; q<10; q++){
             botBoard.board[i][q].dom = document.createElement('div');
+            botBoard.board[i][q].dom.classList.add('square')
+            if(i === 0){
+                if (q === 0){
+                    botBoard.board[i][q].dom.classList.add('topLeft')
+                }
+                if (q === 9){
+                    botBoard.board[i][q].dom.classList.add('topRight')
+                }
+            }
+            if(i === 9){
+                if (q === 0){
+                    botBoard.board[i][q].dom.classList.add('bottomLeft')
+                }
+                if (q === 9){
+                    botBoard.board[i][q].dom.classList.add('bottomRight')
+                }
+            }
         }
     }
 }

@@ -35,6 +35,22 @@ export function createPlayerBoard(board){
             board[i][q].dom.classList.add('square')
             board[i][q].dom.classList.toggle('active');
             board[i][q].dom.location = { y: i, x: q }
+            if(i === 0){
+                if (q === 0){
+                    board[i][q].dom.classList.add('topLeft')
+                }
+                if (q === 9){
+                    board[i][q].dom.classList.add('topRight')
+                }
+            }
+            if(i === 9){
+                if (q === 0){
+                    board[i][q].dom.classList.add('bottomLeft')
+                }
+                if (q === 9){
+                    board[i][q].dom.classList.add('bottomRight')
+                }
+            }
             playerBoard.appendChild(board[i][q].dom)
         }
     }
