@@ -3,15 +3,13 @@ import { placeShipsStage, removeActiveClass } from './placeShipsStage.js';
 import { placeBotShips, populateBotBoard } from './placeBotShips.js'
 import { displayBoards } from './displayBoards.js'
 import { takeTurnsAttacking } from './takeTurnsAttacking.js'
-import { displayPlayerShipsOnBoard } from './displayShipsOnBoard';
+import { displayPlayerShipsOnBoard, showShipsSingleplayer } from './displayShipsOnBoard';
 import { Gameboard } from './gameboard.js';
 import { Player } from './player.js';
 
 export let players = [];
 let p1Name;
 let p2Name;
-
-console.log(players)
 
 export function setupPlayer(mode, difficulty, num){
     if (num === 0 && mode !== 'singlePlayer'){
@@ -56,7 +54,7 @@ export function postShipDeployment(){
         createBotBoard();
         displayBoards(players[0], 0);
         displayBoards(players[1], 1);
-        displayPlayerShipsOnBoard(players[0].playerBoard)
+        showShipsSingleplayer(players[0].playerBoard)
         addPlayerIdentification(players[0], 0)
         addPlayerIdentification(players[1], 1)
         removeActiveClass();

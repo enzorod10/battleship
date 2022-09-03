@@ -5,6 +5,8 @@ import { setupPlayer } from './setupGame.js'
 
 let errors = [];
 
+// Initial menu. Determine if playing vs bot or human.
+
 const startingMenu = document.createElement('div');
 startingMenu.classList.add('startingMenu');
 document.body.appendChild(startingMenu)
