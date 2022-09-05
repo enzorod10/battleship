@@ -3,13 +3,19 @@ import { placeShipsStage, removeActiveClass } from './placeShipsStage.js';
 import { placeBotShips, populateBotBoard } from './placeBotShips.js'
 import { displayBoards } from './displayBoards.js'
 import { takeTurnsAttacking } from './takeTurnsAttacking.js'
-import { displayPlayerShipsOnBoard, showShipsSingleplayer } from './displayShipsOnBoard';
 import { Gameboard } from './gameboard.js';
 import { Player } from './player.js';
 
 export let players = [];
-let p1Name;
-let p2Name;
+export let p1Name;
+export let p2Name;
+
+let difficultyChosen;
+
+// Once all ships are deployed, the game is set up, displaying both boards on screen. Ready for attack.
+
+// Based on menu options, the mode is either 'single player' or 'multi player'.
+// If single player is chosen, there are two difficulties: novice and expert.
 
 export function setupPlayer(mode, difficulty, num){
     if (num === 0 && mode !== 'singlePlayer'){
@@ -20,6 +26,7 @@ export function setupPlayer(mode, difficulty, num){
     let player;
     let name;
     let playerBoard = new Gameboard();
+    difficultyChosen = difficulty
     playerBoard.init();
     if (mode === 'singlePlayer'){
         player = new Player('Human');
@@ -38,7 +45,6 @@ export function setupPlayer(mode, difficulty, num){
     };
 
     if (mode === 'singlePlayer'){
-        players[0].difficulty = difficulty;
         players[0].playerBoard.mode = 'singlePlayer'
     }
 
@@ -54,7 +60,6 @@ export function postShipDeployment(){
         createBotBoard();
         displayBoards(players[0], 0);
         displayBoards(players[1], 1);
-        showShipsSingleplayer(players[0].playerBoard)
         addPlayerIdentification(players[0], 0)
         addPlayerIdentification(players[1], 1)
         removeActiveClass();
@@ -81,7 +86,8 @@ function createBotBoard(){
 
     let player2Board = new Gameboard();
     player2Board.init();
-    let player2 = new Player('bot');
+    let player2 = new Player('Bot');
+    player2.difficulty = difficultyChosen
 
     players[1] = {
         player: player2,
@@ -100,12 +106,73 @@ function clearScreen(){
     document.querySelector('.deployButton').remove();
 }
 
+// Adding name & ships previews to keep track of ships destroyed
+
 function addPlayerIdentification(player, num){
     const playerIdentification = document.createElement('div');
     playerIdentification.classList.add('playerIdentification' + num)
-    playerIdentification.textContent = player.player.name;
-    if (playerIdentification.textContent === 'bot'){
-        playerIdentification.textContent = 'Bot';
+    const playerName = document.createElement('div');
+    playerName.classList.add('playerName')
+    playerIdentification.appendChild(playerName)
+
+    playerName.textContent = player.player.name;
+
+    // Battleship
+    const battleshipPreview = document.createElement('div')
+    battleshipPreview.classList.add('battleshipPreview' + num)
+    playerIdentification.appendChild(battleshipPreview)
+    let battleshipChildren = []
+    for (let i=0; i<5; i++){
+        battleshipChildren[i] = document.createElement('div')
+        battleshipPreview.appendChild(battleshipChildren[i])
     }
+
+    // Carrier
+    const carrierPreview = document.createElement('div')
+    carrierPreview.classList.add('carrierPreview' + num)
+    playerIdentification.appendChild(carrierPreview)
+    let carrierChildren = []
+    for (let i=0; i<4; i++){
+        carrierChildren[i] = document.createElement('div')
+        carrierPreview.appendChild(carrierChildren[i])
+    }
+    
+    // Submarines
+    let submarinePreviews = []
+    let submarineChildren = []
+    for (let q=0; q<2; q++){
+        submarinePreviews[q] = document.createElement('div')
+        submarinePreviews[q].classList.add('submarinePreview' + num)
+        playerIdentification.appendChild(submarinePreviews[q])
+        for (let i=0; i<3; i++){
+            submarineChildren[i] = document.createElement('div')
+            submarinePreviews[q].appendChild(submarineChildren[i])
+        }
+    }
+
+    // Cruisers
+    let cruiserPreviews = []
+    let cruiserChildren = []
+    for (let q=0; q<3; q++){
+        cruiserPreviews[q] = document.createElement('div')
+        cruiserPreviews[q].classList.add('cruiserPreview' + num)
+        playerIdentification.appendChild(cruiserPreviews[q])
+        for (let i=0; i<2; i++){
+            cruiserChildren[i] = document.createElement('div')
+            cruiserPreviews[q].appendChild(cruiserChildren[i])
+        }
+    }
+
+    // Smallships
+    let smallshipPreviews = []
+    let smallshipChildren = []
+    for (let q=0; q<3; q++){
+        smallshipPreviews[q] = document.createElement('div')
+        smallshipPreviews[q].classList.add('smallshipPreview' + num)
+        playerIdentification.appendChild(smallshipPreviews[q])
+        smallshipChildren[q] = document.createElement('div')
+        smallshipPreviews[q].appendChild(smallshipChildren[q])
+    }
+
     document.querySelectorAll('.playerBoard')[num].appendChild(playerIdentification)
 }

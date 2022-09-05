@@ -113,18 +113,37 @@ function playMultiplayer(){
         if (document.querySelector('.inputPlayer1Name').value === ''){
             errors.push(document.createElement('div'))
             errors[errors.length - 1].classList.add('errorMessage')
-            errors[errors.length - 1].textContent = 'Player 1 name can\'t be left empty';
+            errors[errors.length - 1].textContent = 'Can\'t be left empty';
             document.querySelector('.player1NameContainer').appendChild(errors[errors.length - 1])
-        }
-        if (document.querySelector('.inputPlayer2Name').value === ''){
+        } else if (document.querySelector('.inputPlayer1Name').value.length > 8){
             errors.push(document.createElement('div'))
             errors[errors.length - 1].classList.add('errorMessage')
-            errors[errors.length - 1].textContent = 'Player 2 name can\'t be left empty';
+            errors[errors.length - 1].textContent = 'Must be 8 chars. or less';
+            document.querySelector('.player1NameContainer').appendChild(errors[errors.length - 1])
+        } else if (document.querySelector('.inputPlayer1Name').value === 'Human' || document.querySelector('.inputPlayer1Name').value === 'Bot'){
+            errors.push(document.createElement('div'))
+            errors[errors.length - 1].classList.add('errorMessage')
+            errors[errors.length - 1].textContent = 'Player 1 name is invalid';
+            document.querySelector('.player1NameContainer').appendChild(errors[errors.length - 1])
+        }
+        else if (document.querySelector('.inputPlayer2Name').value === ''){
+            errors.push(document.createElement('div'))
+            errors[errors.length - 1].classList.add('errorMessage')
+            errors[errors.length - 1].textContent = 'Can\'t be left empty';
             document.querySelector('.player2NameContainer').appendChild(errors[errors.length - 1])
-        } else {
+        } else if (document.querySelector('.inputPlayer2Name').value === 'Human' || document.querySelector('.inputPlayer2Name').value === 'Bot'){
+            errors.push(document.createElement('div'))
+            errors[errors.length - 1].classList.add('errorMessage')
+            errors[errors.length - 1].textContent = 'Player 2 name is invalid';
+            document.querySelector('.player2NameContainer').appendChild(errors[errors.length - 1])
+        } else if (document.querySelector('.inputPlayer2Name').value.length > 8){
+            errors.push(document.createElement('div'))
+            errors[errors.length - 1].classList.add('errorMessage')
+            errors[errors.length - 1].textContent = 'Must be 8 chars. or less';
+            document.querySelector('.player2NameContainer').appendChild(errors[errors.length - 1])
+        } 
+        else {
             document.querySelector('.playMultiplayerButton').removeEventListener('click', playMultiplayer)
-
-        setupPlayer('multiPlayer', 'multi', 0, document.querySelector('.inputPlayer1Name').value, document.querySelector('.inputPlayer2Name').value)
-            
+            setupPlayer('multiPlayer', 'multi', 0, document.querySelector('.inputPlayer1Name').value, document.querySelector('.inputPlayer2Name').value)
         }
 }

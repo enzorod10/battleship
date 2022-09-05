@@ -22,35 +22,31 @@ function attackPlayer2(){
     document.querySelectorAll('.playerBoard')[1].addEventListener('click', processPlayer2Target)
 }
 
+// Player 1 has clicked on player 2 board, attack is processed here
+
 function processPlayer2Target(ev){
-    document.querySelectorAll('.playerBoard')[1].removeEventListener('click', processPlayer2Target)
     let caught = false;
     for (let i=0; i<10; i++){
         for (let q=0; q<10; q++){
             if (players[1].playerBoard.board[i][q].dom === ev.target){
+                document.querySelectorAll('.playerBoard')[1].removeEventListener('click', processPlayer2Target)
+                // Attempt shot at clicked location. If invalid, redo whole process.
                 try{
                     players[0].player.attack(i, q, players[1].playerBoard)
                 } catch{
                     caught = true;
                     document.querySelector('.message').textContent = 'Invalid shot. Pick another location.'
-                    setTimeout(attackPlayer2, 2000);
+                    setTimeout(attackPlayer2, 1250)
                 }
                 if (!caught){
-                    if (players[0].playerBoard.mode === 'singlePlayer'){
-                        document.querySelector('.message').textContent = 'You shoot..'
-                        updateBoardDom(players[1])
-                        setTimeout(communicateAttackInfo, 1500, players[0], players[1], i, q)
+                    updateBoardDom(players[1])
+                    setTimeout(communicateAttackInfo, 0, players[0], players[1], i, q)
+                    if(players[1].playerBoard.allShipsDestroyed === true){
+                        players[0].player.winner = true;
+                        setTimeout(reportResult, 0, players);
                     } else {
-                        document.querySelector('.message').textContent = players[0].player.name + ' has shot..'
-                        updateBoardDom(players[1])
-                        setTimeout(communicateAttackInfo, 1500, players[0], players[1], i, q)
+                        setTimeout(attackPlayer1, 1250)
                     }
-                }
-                if(players[1].playerBoard.allShipsDestroyed === true){
-                    players[0].player.winner = true;
-                    setTimeout(reportResult, 2000, players);
-                } else {
-                    setTimeout(attackPlayer1, 3000);
                 }
             }
         }
@@ -60,7 +56,6 @@ function processPlayer2Target(ev){
 function attackPlayer1(){
     let caught = false;
     if (players[0].playerBoard.mode === 'singlePlayer'){
-        document.querySelector('.message').textContent = '';
         try{
             players[1].player.attack(0, 0, players[0].playerBoard);
         } catch{
@@ -69,16 +64,16 @@ function attackPlayer1(){
         if (!caught){
             areaHit.y = players[0].playerBoard.chronologicalGeneralDamage[players[0].playerBoard.chronologicalGeneralDamage.length - 1].y;
             areaHit.x = players[0].playerBoard.chronologicalGeneralDamage[players[0].playerBoard.chronologicalGeneralDamage.length - 1].x;
-            document.querySelector('.message').textContent = 'The bot has shot..'
-            setTimeout(communicateAttackInfo, 1500, players[1], players[0], areaHit.y, areaHit.x);
+            setTimeout(communicateAttackInfo, 0, players[1], players[0], areaHit.y, areaHit.x);
             updateBoardDom(players[0])
+            if (players[0].playerBoard.allShipsDestroyed === true){
+                players[1].player.winner = true;
+                setTimeout(reportResult, 0, players);
+            } else {
+                setTimeout(attackPlayer2, 1250)
+            }
         }
-        if (players[0].playerBoard.allShipsDestroyed === true){
-            players[1].player.winner = true;
-            setTimeout(reportResult, 2000, players);
-        } else {
-            setTimeout(attackPlayer2, 3000);
-        }
+        
     } else {
         document.querySelector('.message').textContent = players[1].player.name + ', it\'s your turn to attack.';
         document.querySelectorAll('.playerBoard')[0].addEventListener('click', processPlayer1Target)
@@ -86,29 +81,29 @@ function attackPlayer1(){
 }
 
 function processPlayer1Target(ev){
-    document.querySelectorAll('.playerBoard')[0].removeEventListener('click', processPlayer1Target)
     let caught = false;
     for (let i=0; i<10; i++){
         for (let q=0; q<10; q++){
             if (players[0].playerBoard.board[i][q].dom === ev.target){
+            document.querySelectorAll('.playerBoard')[0].removeEventListener('click', processPlayer1Target)
                 try{
                     players[1].player.attack(i, q, players[0].playerBoard)
                 } catch{
                     caught = true;
                     document.querySelector('.message').textContent = 'Invalid shot. Pick another location.'
-                    setTimeout(attackPlayer1, 2000)
+                    setTimeout(attackPlayer1, 1250);
                 }
                 if (!caught){
-                    document.querySelector('.message').textContent = players[1].player.name + ' has shot..'
                     updateBoardDom(players[0])
-                    setTimeout(communicateAttackInfo, 1500, players[1], players[0], i, q)
+                    setTimeout(communicateAttackInfo, 0, players[1], players[0], i, q)
+                    if(players[0].playerBoard.allShipsDestroyed === true){
+                        players[1].player.winner = true;
+                        setTimeout(reportResult, 0, players);
+                    } else {
+                        setTimeout(attackPlayer2, 1250)
+                    }
                 }
-                if(players[0].playerBoard.allShipsDestroyed === true){
-                    players[1].player.winner = true;
-                    setTimeout(reportResult, 2000, players);
-                } else {
-                    setTimeout(attackPlayer2, 3000);
-                }
+                
             }
         }
     }

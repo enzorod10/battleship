@@ -1,5 +1,6 @@
 import { postShipDeployment, multiplayerAttackingStage } from './setupGame';
 import { displayPlayerShipsOnBoard } from './displayShipsOnBoard'
+import { p1Name, p2Name } from './setupGame'
 
 let highlightShipPlacementTemp;
 let shipToDomTemp;
@@ -9,7 +10,7 @@ let shipsInfo = [];
 function Ship(shipName, shipLength){
     this.name = shipName,
     this.length = shipLength,
-    this.message = 'Place your ' + this.name.substring(0, this.name.length) + ` (${this.length})`
+    this.message = 'place your ' + this.name.substring(0, this.name.length) + ` (${this.length} ${this.length === 1 ? 'square' : 'squares'})`
 }
 
 function supplyShipsInfo(){
@@ -38,7 +39,7 @@ export function placeShipsStage(pBoard, playerNumber){
 }
 
 function placeShip(pBoard, playerNumber){
-    document.querySelector('.message').textContent = shipsInfo[count].message;
+    document.querySelector('.message').textContent = pBoard.mode === 'singlePlayer' ? `Player, ${shipsInfo[count].message}` : (playerNumber === 0 ? p1Name : p2Name) + ', ' + shipsInfo[count].message;
     let playerBoard = document.querySelector('.playerBoard')
     playerBoard.addEventListener('mouseover', highlightShipPlacementTemp = (ev) => highlightShipPlacement(ev, pBoard))
     playerBoard.addEventListener('click', shipToDomTemp = (ev) => shipToDom(ev, pBoard, playerNumber))

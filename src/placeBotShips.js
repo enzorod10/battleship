@@ -80,7 +80,7 @@ function placeBotSmallship(botBoard){
     try {
         botBoard.placeShip(Math.floor(Math.random() * 10), Math.floor(Math.random() * 10), 'Smallship', 1, axis)
     } catch (error){
-        placeBotCruiser(botBoard)
+        placeBotSmallship(botBoard)
     }
 }
 
