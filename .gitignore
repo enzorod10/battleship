@@ -1,2 +1,6 @@
 node_modules/
-*webpack.config.js
+*webpack.config
+/__mocks__
+.babelrc
+.gitignore
+credit

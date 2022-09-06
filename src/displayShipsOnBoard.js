@@ -83,74 +83,74 @@ export function displayPlayerShipsOnBoard(playerBoard, count){
 }
 
 // A copy of displayPlayerShipsOnBoard function but this keeps the ships on the board against the bot
-export function showShipsSingleplayer(playerBoard){
-    let arrayOfPhysicalShips = [];
+// Not used at the moment; ship images not shown on board
+// export function showShipsSingleplayer(playerBoard){
+//     let arrayOfPhysicalShips = [];
 
-    if (document.querySelector('.fakeBoard') === null){
-        let fakeBoard = document.createElement('div');
-        fakeBoard.textContent = '';
-        fakeBoard.classList.add('fakeBoard');
-        document.querySelector('.playerBoard').appendChild(fakeBoard)
-    }
+//     if (document.querySelector('.fakeBoard') === null){
+//         let fakeBoard = document.createElement('div');
+//         fakeBoard.textContent = '';
+//         fakeBoard.classList.add('fakeBoard');
+//         document.querySelector('.playerBoard').appendChild(fakeBoard)
+//     }
 
-    let square = document.querySelector('.square').getClientRects()[0]
-    let totalShips = playerBoard.allShips.length
+//     let square = document.querySelector('.square').getClientRects()[0]
+//     let totalShips = playerBoard.allShips.length
 
-    for (let i=0; i<totalShips; i++){
-        arrayOfPhysicalShips[i] = document.createElement('img');
-        if (playerBoard.allShips[i].name === 'Battleship'){
-            if (playerBoard.allShips[i].axis === 'horizontal'){
-                arrayOfPhysicalShips[i].src = horizontalBattleship
-                arrayOfPhysicalShips[i].style.height = `${square.height}px`
-                arrayOfPhysicalShips[i].style.width = `${square.width * 5}px`
-            } else {
-                arrayOfPhysicalShips[i].src = verticalBattleship
-                arrayOfPhysicalShips[i].style.height = `${square.height * 5}px`
-                arrayOfPhysicalShips[i].style.width = `${square.width}px`
-            }
-        }else if (playerBoard.allShips[i].name === 'Carrier'){
-            if (playerBoard.allShips[i].axis === 'horizontal'){
-                arrayOfPhysicalShips[i].src = horizontalCarrier
-                arrayOfPhysicalShips[i].style.height = `${square.height}px`
-                arrayOfPhysicalShips[i].style.width = `${square.width * 4}px`
-            } else {
-                arrayOfPhysicalShips[i].src = verticalCarrier
-                arrayOfPhysicalShips[i].style.height = `${square.height * 4}px`
-                arrayOfPhysicalShips[i].style.width = `${square.width}px`
-            }
-        } else if (playerBoard.allShips[i].name === 'Submarine'){
-            if (playerBoard.allShips[i].axis === 'horizontal'){
-                arrayOfPhysicalShips[i].src = horizontalSubmarine
-                arrayOfPhysicalShips[i].style.height = `${square.height}px`
-                arrayOfPhysicalShips[i].style.width = `${square.width * 3}px`
-            } else {
-                arrayOfPhysicalShips[i].src = verticalSubmarine
-                arrayOfPhysicalShips[i].style.height = `${square.height * 3}px`
-                arrayOfPhysicalShips[i].style.width = `${square.width}px`
-            }
-        } else if (playerBoard.allShips[i].name === 'Cruiser'){
-            if (playerBoard.allShips[i].axis === 'horizontal'){
-                arrayOfPhysicalShips[i].src = horizontalCruiser
-                arrayOfPhysicalShips[i].style.height = `${square.height}px`
-                arrayOfPhysicalShips[i].style.width = `${square.width * 2}px`
-            } else {
-                arrayOfPhysicalShips[i].src = verticalCruiser
-                arrayOfPhysicalShips[i].style.height = `${square.height * 2}px`
-                arrayOfPhysicalShips[i].style.width = `${square.width}px`
-            }
-        } else if (playerBoard.allShips[i].name === 'Smallship'){
-            if (playerBoard.allShips[i].axis === 'horizontal'){
-                arrayOfPhysicalShips[i].src = horizontalSmallship
-            } else {
-                arrayOfPhysicalShips[i].src = verticalSmallship
-            }
-            arrayOfPhysicalShips[i].style.height = `${square.height}px`
-            arrayOfPhysicalShips[i].style.width = `${square.width}px`
-        } 
-        document.querySelector('.fakeBoard').appendChild(arrayOfPhysicalShips[i])
-        arrayOfPhysicalShips[i].style.position = 'absolute';
-    arrayOfPhysicalShips[i].style.left = ((playerBoard.allShips[i].placedAt.x) * 10) + '%'
-    arrayOfPhysicalShips[i].style.top = ((playerBoard.allShips[i].placedAt.y) * 10) + '%'
-    }
-
-}
+//     for (let i=0; i<totalShips; i++){
+//         arrayOfPhysicalShips[i] = document.createElement('img');
+//         if (playerBoard.allShips[i].name === 'Battleship'){
+//             if (playerBoard.allShips[i].axis === 'horizontal'){
+//                 arrayOfPhysicalShips[i].src = horizontalBattleship
+//                 arrayOfPhysicalShips[i].style.height = `${square.height}px`
+//                 arrayOfPhysicalShips[i].style.width = `${square.width * 5}px`
+//             } else {
+//                 arrayOfPhysicalShips[i].src = verticalBattleship
+//                 arrayOfPhysicalShips[i].style.height = `${square.height * 5}px`
+//                 arrayOfPhysicalShips[i].style.width = `${square.width}px`
+//             }
+//         }else if (playerBoard.allShips[i].name === 'Carrier'){
+//             if (playerBoard.allShips[i].axis === 'horizontal'){
+//                 arrayOfPhysicalShips[i].src = horizontalCarrier
+//                 arrayOfPhysicalShips[i].style.height = `${square.height}px`
+//                 arrayOfPhysicalShips[i].style.width = `${square.width * 4}px`
+//             } else {
+//                 arrayOfPhysicalShips[i].src = verticalCarrier
+//                 arrayOfPhysicalShips[i].style.height = `${square.height * 4}px`
+//                 arrayOfPhysicalShips[i].style.width = `${square.width}px`
+//             }
+//         } else if (playerBoard.allShips[i].name === 'Submarine'){
+//             if (playerBoard.allShips[i].axis === 'horizontal'){
+//                 arrayOfPhysicalShips[i].src = horizontalSubmarine
+//                 arrayOfPhysicalShips[i].style.height = `${square.height}px`
+//                 arrayOfPhysicalShips[i].style.width = `${square.width * 3}px`
+//             } else {
+//                 arrayOfPhysicalShips[i].src = verticalSubmarine
+//                 arrayOfPhysicalShips[i].style.height = `${square.height * 3}px`
+//                 arrayOfPhysicalShips[i].style.width = `${square.width}px`
+//             }
+//         } else if (playerBoard.allShips[i].name === 'Cruiser'){
+//             if (playerBoard.allShips[i].axis === 'horizontal'){
+//                 arrayOfPhysicalShips[i].src = horizontalCruiser
+//                 arrayOfPhysicalShips[i].style.height = `${square.height}px`
+//                 arrayOfPhysicalShips[i].style.width = `${square.width * 2}px`
+//             } else {
+//                 arrayOfPhysicalShips[i].src = verticalCruiser
+//                 arrayOfPhysicalShips[i].style.height = `${square.height * 2}px`
+//                 arrayOfPhysicalShips[i].style.width = `${square.width}px`
+//             }
+//         } else if (playerBoard.allShips[i].name === 'Smallship'){
+//             if (playerBoard.allShips[i].axis === 'horizontal'){
+//                 arrayOfPhysicalShips[i].src = horizontalSmallship
+//             } else {
+//                 arrayOfPhysicalShips[i].src = verticalSmallship
+//             }
+//             arrayOfPhysicalShips[i].style.height = `${square.height}px`
+//             arrayOfPhysicalShips[i].style.width = `${square.width}px`
+//         } 
+//         document.querySelector('.fakeBoard').appendChild(arrayOfPhysicalShips[i])
+//         arrayOfPhysicalShips[i].style.position = 'absolute';
+//         arrayOfPhysicalShips[i].style.left = ((playerBoard.allShips[i].placedAt.x) * 10) + '%'
+//         arrayOfPhysicalShips[i].style.top = ((playerBoard.allShips[i].placedAt.y) * 10) + '%'
+//     }
+// }

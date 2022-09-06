@@ -22,13 +22,15 @@
     }
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "cross-env NODE_ENV=development webpack --config webpack.config.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
