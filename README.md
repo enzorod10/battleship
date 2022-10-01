@@ -169,6 +169,7 @@ Project Link: [https://github.com/enzorod10/battleship/dist/index.html](https://
 * [GitHub Pages](https://pages.github.com)
 * [Font Awesome](https://fontawesome.com)
 * [Icons8](https://icons8.com/)
+* [Boxy SVG](https://boxy-svg.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
