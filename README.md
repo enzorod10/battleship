@@ -14,7 +14,7 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">:Battleship: The Game</h3>
+<h3 align="center">Battleship: The Game</h3>
 
   <p align="center">
     Test-driven battleship game with the ability to play against a bot (with multiple difficulties) or pass-and-play with a friend.
