@@ -10,9 +10,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/enzorod10/battleship">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
+  
+  ![logo](https://user-images.githubusercontent.com/93365813/193445167-8271814f-4dc1-4475-bd49-dcabc46b3239.png)
+
 
 <h3 align="center">Battleship: The Game</h3>
 
@@ -58,9 +58,22 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+Users are able to play singleplayer or multiplayer. Singleplayer has two different modes: novice and expert. Regardless of which mode is chosen, the UI is set up so that the human player is able to rightfully track the progress the game. If a ship is hit, the user will know. If a ship is destroyed, then the user will know. Human players will begin by setting up their board with ships in whichever location they may choose.
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+<div align='center'>
+
+![main](https://user-images.githubusercontent.com/93365813/193445300-96602bb4-77d7-4fb5-8ace-59c4a22976bf.png)
+  
+ </div>
+ 
+ 
+If a user clicks on the part of board that contains a ship, then they will know and they will be able to continue accordingly:
+
+<div align='center'>
+
+![demo](https://user-images.githubusercontent.com/93365813/193446219-26fc6682-808b-4f85-ae1d-1514ca4c6561.png)
+
+</div>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -100,7 +113,13 @@ Have node package manager (npm) installed
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Regardless of which mode is chosen, users will have to set their ships up accordingly. There is 1 battleship, whoch takes up 5 boxes. A carrier, which takes up 4 boxes. 2 submarines, which takes up 3 boxes. Two cruisers, which take up 2 boxes, and three submarines which take up only 1 box. The objective is to destory all ships. Ships may be placed horizontally or vertically, depending on the preferences of the player. Here is one example:
+
+<div align='center'>
+
+![main](https://user-images.githubusercontent.com/93365813/193446032-ccc4e1e9-23a8-48f4-8157-370ede83351f.png)
+  
+</div>
 
 _For more examples, please refer to the [Documentation](https://github.com/enzorod10/battleship.git)_
 
