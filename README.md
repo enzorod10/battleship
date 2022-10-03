@@ -58,7 +58,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Users are able to play singleplayer or multiplayer. Singleplayer has two different modes: novice and expert. Regardless of which mode is chosen, the UI is set up so that the human player is able to rightfully track the progress the game. If a ship is hit, the user will know. If a ship is destroyed, then the user will know. Human players will begin by setting up their board with ships in whichever location they may choose.
+Users are able to play singleplayer or multiplayer. Singleplayer has two different modes: novice and expert. Regardless of which mode is chosen, the UI is set up so that the human player is able to track the progression of the game. If a ship is hit or destroyed, the user will know. Human players will begin by setting up their board with ships in whichever location they may choose.
 
 <div align='center'>
 
