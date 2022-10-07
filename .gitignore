@@ -1,6 +1,0 @@
-node_modules/
-*webpack.config
-/__mocks__
-.babelrc
-.gitignore
-credit

@@ -75,6 +75,7 @@ export function postShipDeployment(){
 }
 
 export function multiplayerAttackingStage(){
+    document.querySelector('.gamePhase').classList.remove('preStage')
     document.querySelector('.deployButton').removeEventListener('click', multiplayerAttackingStage)
     document.querySelector('.deployButton').remove();
     displayBoards(players[0], 0);
